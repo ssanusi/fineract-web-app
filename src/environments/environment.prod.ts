@@ -9,9 +9,9 @@ export const environment = {
   fineractPlatformTenantId: window['env']['fineractPlatformTenantId'] || 'default',
   // For connecting to others servers running elsewhere update the base API URL
   baseApiUrls: window['env']['fineractApiUrls'] ||
-    'https://dev.mifos.io,https://demo.mifos.io,https://qa.mifos.io,https://staging.mifos.io,https://mobile.mifos.io,https://demo.fineract.dev,https://localhost:8443',
+    'https://ec2-18-223-234-41.us-east-2.compute.amazonaws.com,https://localhost:8443',
   // For connecting to server running elsewhere set the base API URL
-  baseApiUrl: window['env']['fineractApiUrl'] || 'https://demo.fineract.dev',
+  baseApiUrl: window['env']['fineractApiUrl'] || 'https://ec2-18-223-234-41.us-east-2.compute.amazonaws.com',
   allowServerSwitch: env.allow_switching_backend_instance,
   apiProvider: window['env']['apiProvider'] || '/fineract-provider/api',
   apiVersion: window['env']['apiVersion'] || '/v1',
