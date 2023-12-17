@@ -15,6 +15,7 @@ import { DeleteDialogComponent } from 'app/shared/delete-dialog/delete-dialog.co
 import { LoanStatus } from '../models/loan-status.model';
 import { Currency } from 'app/shared/models/general.model';
 import { DelinquencyPausePeriod } from '../models/loan-account.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'mifosx-loans-view',
@@ -48,10 +49,11 @@ export class LoansViewComponent implements OnInit {
   currency: Currency;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              public loansService: LoansService,
-              public dialog: MatDialog) {
-    this.route.data.subscribe((data: { loanDetailsData: any, loanDatatables: any, loanArrearsDelinquencyConfig: any}) => {
+    private router: Router,
+    public loansService: LoansService,
+    private translateService: TranslateService,
+    public dialog: MatDialog) {
+    this.route.data.subscribe((data: { loanDetailsData: any, loanDatatables: any, loanArrearsDelinquencyConfig: any }) => {
       this.loanDetailsData = data.loanDetailsData;
       this.loanDatatables = data.loanDatatables;
       this.loanDisplayArrearsDelinquency = data.loanArrearsDelinquencyConfig.value || 0;
@@ -174,7 +176,7 @@ export class LoansViewComponent implements OnInit {
         this.deleteLoanAccount();
         break;
       case 'Modify Application':
-        this.router.navigate(['edit-loans-account'], { relativeTo: this.route});
+        this.router.navigate(['edit-loans-account'], { relativeTo: this.route });
         break;
       case 'Transfer Funds':
         const queryParams: any = { loanId: this.loanId, accountType: 'fromloans' };
@@ -191,7 +193,7 @@ export class LoansViewComponent implements OnInit {
    */
   private recoverFromGuarantor() {
     const recoverFromGuarantorDialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { heading: 'Recover from Guarantor', dialogContext: 'Are you sure you want recover from Guarantor', type: 'Mild' }
+      data: { heading: this.translateService.instant('labels.heading.Recover from Guarantor'), dialogContext: this.translateService.instant('labels.dialogContext.Are you sure you want recover from Guarantor'), type: 'Mild' }
     });
     recoverFromGuarantorDialogRef.afterClosed().subscribe((response: any) => {
       if (response.confirm) {
